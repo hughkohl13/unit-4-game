@@ -11,11 +11,11 @@
     <script src="assets/javascript/game.js"></script>
 </head>
 <body>
-    <h1 class="crystals d-flex bd-highlight  justify-content-center"> Meridian Gym </h1>
+    <h1 class="crystals d-flex bd-highlight  justify-content-center"> Pewter Gym </h1>
     
     <div class="row">
         <div class="col-md-2"></div>
-        <div class="intro col-md-8"> Welcome to Pewter City! This is the home of rock pokemon.  Defeat Brock and his Onix to gain the Rock badge.</div>
+        <div class="intro col-md-8"> Welcome to Pewter City! This is the home of rock pokemon.  Defeat Brock and his pokemon to gain the Rock badge.</div>
     </div>
     
     
@@ -23,11 +23,16 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-4"> <img src="assets/images/onix.png"> <p id="onix">Hit points:</p>  </div>
-        <div class="col-md-1"></div>
-        <div class="score col-md-3">
+        <div class="col-md-1.5">
+            <img id="minorPic" src="assets/images/geodude.png">
+        </div>
+        <div class="col-md-1.5">
+            <img id="minorPic" src="assets/images/golem.png">
+        </div>
+        <!-- <div class="score col-md-3">
                 <p id="win"> Wins: </p>
                 <p id="lose"> Losses: </p>
-        </div>
+        </div> -->
     </div>
 
     <div class="row">
@@ -52,52 +57,49 @@
     var losses = 0;
     var totalScore = 0;
 
-    // set game starting points
-    var gameReset = function() {
-        var totalScore = 0;
-        console.log();
+    // function initializeGame() {
+    // Set random Hit Point vals per pokemon
+    var ranOnix = Math.floor(Math.random() * 120)+30;
+    var ranPikachu = Math.floor(Math.random() * 10)+1;
+    var ranBulbasaur = Math.floor(Math.random() * 10)+3;
+    var ranCharmander = Math.floor(Math.random() * 10)+5;
+    var ranSquirtle = Math.floor(Math.random() * 10)+7;
 
-        // Set random Hit Point vals per pokemon
-        var ranOnix = Math.floor(Math.random() * 120)+30;
-        var ranPikachu = Math.floor(Math.random() * 14)+3;
-        var ranBulbasaur = Math.floor(Math.random() * 18)+3;
-        var ranCharmander = Math.floor(Math.random() * 18)+3;
-        var ranSquirtle = Math.floor(Math.random() * 16)+3;
+    // Place vals in html
+    $("#onix").html("Hit Points: " + ranOnix);   
+    $("#pikachu").text("Hit Points: " + ranPikachu);
+    $("#bulbasaur").text("Hit Points: " + ranPikachu);
+    $("#charmander").text("Hit Points: " + ranCharmander);
+    $("#squirtle").text("Hit Points: " + ranSquirtle);
+    // };
 
-        // Place vals in html
-        $("#onix").html("Hit Points: " + ranOnix);   
-        $("#pikachu").text("Hit Points: " + ranPikachu);
-        $("#bulbasaur").text("Hit Points: " + ranPikachu);
-        $("#charmander").text("Hit Points: " + ranCharmander);
-        $("#squirtle").text("Hit Points: " + ranSquirtle);
-        $("#totalScore").text("Total score: " + totalScore);
+    $("#pikaPic").on("click", function(){
+        totalScore = totalScore + ranPikachu;
+        lessThan();
+        $("#totalScore").html("Total score: " + totalScore);
+        console.log(totalScore);
+    });
+    $("#bulbaPic").on("click", function(){
+        totalScore = totalScore + ranBulbasaur;
+        lessThan();
+        $("#totalScore").html("Total score: " + totalScore);
+        console.log(totalScore);
+    });
+    $("#charmPic").on("click", function(){
+        totalScore = totalScore + ranCharmander;
+        lessThan();
+        $("#totalScore").html("Total score: " + totalScore);
+        console.log(totalScore);
+    });
+    $("#squirPic").on("click", function(){
+        totalScore = totalScore + ranSquirtle;
+        lessThan();
+        $("#totalScore").html("Total score: " + totalScore);
+        console.log(totalScore);
+    });
 
-    };
 
-            $("#pikaPic").on("click", function(){
-            totalScore = totalScore + ranPikachu;
-            $("#totalScore").html("Total score: " + totalScore);
-            console.log(totalScore);
-            lessThan();
-        });
-        $("#bulbaPic").on("click", function(){
-            totalScore = totalScore + ranBulbasaur;
-            $("#totalScore").html("Total score: " + totalScore);
-            console.log(totalScore);
-            lessThan();
-        });
-        $("#charmPic").on("click", function(){
-            totalScore = totalScore + ranCharmander;
-            $("#totalScore").html("Total score: " + totalScore);
-            console.log(totalScore);
-            lessThan();
-        });
-        $("#squirPic").on("click", function(){
-            totalScore = totalScore + ranSquirtle;
-            $("#totalScore").html("Total score: " + totalScore);
-            console.log(totalScore);
-            lessThan();
-        });
+    // initializeGame();
 
     // while total score is less than 
     function lessThan() {
@@ -109,16 +111,23 @@
         console.log(wins);
         initializeGame();
     } else {
-        alert("You lost! Come back when you're ready")
-        losses++;
+        alert("You lost!")
+        loss++;
         $("#lose").text("Losses: " + losses);
         initializeGame();
     };
-
-    document.gameReset();
-
-
 };
+
+    var brockPokemon = [onix, geodude, golem];
+
+    function winCondition() {
+
+    }
+
+    function loseCondition() {
+
+    }
+
 });
 
 
